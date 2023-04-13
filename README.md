@@ -2,8 +2,7 @@
 
 # Council 🤖 Tally App Template
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%turbo-eth%template-tally-app&project-name=Places&repository-name=networks&demo-title=Places&env=NEXT_PUBLIC_tally_API&envDescription=How%20to%20get%20these%20env%20variables%3A&envLink=https%3A%2F%2Fgithub.com%turbo-eth%template-tally-app%2Fblob%2Fmain%2F.env.example)
-
+⚠️ In Active Development! ⚠️
 
 # Getting Started
 
