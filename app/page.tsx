@@ -2,8 +2,6 @@
 
 import { FaGithub } from 'react-icons/fa'
 
-import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { Governors } from '@/integrations/tally/components/governors'
 
 export default function Home() {
@@ -36,22 +34,17 @@ export default function Home() {
         </div>
         <hr className="my-16 mx-auto max-w-md" />
         <div className="container mx-auto grid max-w-screen-xl">
-          <BranchIsWalletConnected>
-            <>
-              <Governors
-                className="flex w-full cursor-pointer flex-col gap-y-4"
-                classNameItem="card flex items-center gap-x-10 justify-between"
-                variables={{
-                  chainIds: ['eip155:1'],
-                  pagination: {
-                    limit: 10,
-                    offset: 0,
-                  },
-                }}
-              />
-            </>
-            <WalletConnect className="mx-auto inline-block" />
-          </BranchIsWalletConnected>
+          <Governors
+            className="flex w-full cursor-pointer flex-col gap-y-4"
+            classNameItem="card flex items-center gap-x-10 justify-between"
+            variables={{
+              chainIds: ['eip155:1'],
+              pagination: {
+                limit: 10,
+                offset: 0,
+              },
+            }}
+          />
         </div>
       </section>
     </>
