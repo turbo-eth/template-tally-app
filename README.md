@@ -1,6 +1,6 @@
 ![image](https://user-images.githubusercontent.com/3408362/231753139-1e0b457a-6af6-435d-85a6-aa0a38ac9f58.png)
 
-# Council 🤖 Tally App Template
+# Council 🏛️ Tally App Template
 
 ⚠️ In Active Development! ⚠️
 
