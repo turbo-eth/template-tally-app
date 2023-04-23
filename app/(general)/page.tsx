@@ -37,7 +37,7 @@ export default function Home() {
             In active development 🧰 click here to follow bounty progress.
           </LinkComponent>
         </div>
-        <hr className="my-16 mx-auto max-w-md" />
+        <hr className="mx-auto my-16 max-w-md" />
         <div className="container mx-auto grid max-w-screen-xl">
           <Governors
             className="flex w-full cursor-pointer flex-col gap-y-4"
