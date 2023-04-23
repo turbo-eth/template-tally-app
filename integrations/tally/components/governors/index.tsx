@@ -2,7 +2,9 @@ import * as React from 'react'
 
 import classNames from 'clsx'
 
-import { useQueryGovernors } from '../queries/query-governors'
+import { Skeleton } from './skeleton'
+import { useQueryGovernors } from '../../queries/query-governors'
+import { GovernorCard } from '../governor-card'
 
 interface GovernorsProps {
   className?: string
@@ -33,33 +35,16 @@ export const Governors = ({ className, classNameItem, variables }: GovernorsProp
     },
   })
 
-  if (fetching) return <div className="text-center">Loading...</div>
+  if (fetching) return <Skeleton className={className} />
   if (error) return <div className="text-center">Error: {error.message} </div>
 
   const classes = classNames(className, 'Governors')
   const classesItem = classNames(classNameItem, 'GovernorItem')
   return (
     <div className={classes}>
-      {data?.governors.map((governor: any, index: number) => {
-        return (
-          <div key={governor.id} className={classesItem}>
-            <div>
-              <h3 className="text-gradient-sand text-4xl font-bold">{governor.name}</h3>
-              <div>{governor.id}</div>
-            </div>
-            <div className="flex items-center gap-x-4">
-              <div className="text-center">
-                <div className="text-4xl font-normal">{governor.proposalStats.active}</div>
-                <div>Active Proposals</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-normal">{governor.proposalStats.total}</div>
-                <div>Total Proposals</div>
-              </div>
-            </div>
-          </div>
-        )
-      })}
+      {data?.governors.map((governor: any) => (
+        <GovernorCard key={governor.id} governor={governor} className={classesItem} />
+      ))}
     </div>
   )
 }
