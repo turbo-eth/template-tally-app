@@ -6,10 +6,10 @@ interface SkeletonProps {
 
 export const Skeleton = ({ className }: SkeletonProps) => (
   <div className={className}>
-    <CardSkeleton />
-    <CardSkeleton />
-    <CardSkeleton />
-    <CardSkeleton />
-    <CardSkeleton />
+    {Array(12)
+      .fill(0)
+      .map((_, index) => (
+        <CardSkeleton key={index} />
+      ))}
   </div>
 )
