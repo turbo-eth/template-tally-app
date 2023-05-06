@@ -1,11 +1,19 @@
 'use client'
 
+import { useState } from 'react'
+
+import Image from 'next/image'
 import { FaGithub } from 'react-icons/fa'
 
-import { LinkComponent } from '@/components/shared/link-component'
+import { SearchInput } from '@/components/ui/search-input'
 import { Governors } from '@/integrations/tally/components/governors'
+import { tallyChains } from '@/integrations/tally/config/chains'
+import { cn } from '@/lib/utils'
 
 export default function Home() {
+  const [searchValue, setSearchValue] = useState<string>('')
+  const [chainId, setChainId] = useState<string>()
+
   return (
     <>
       <section className="w-full">
@@ -15,7 +23,7 @@ export default function Home() {
           </h1>
           <h3 className="text-2xl font-bold text-neutral-500 dark:text-neutral-200">Tally + OpenAI + TurboETH</h3>
           <p className="mt-6 text-center text-gray-500 dark:text-gray-200 md:text-xl">Start building next generation Web3 apps today</p>
-          <div className="mx-auto mt-6 flex items-center justify-center space-x-5">
+          <div className="mx-auto mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
             <a
               className="group flex max-w-fit items-center justify-center space-x-2 rounded-full border border-black bg-black px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
               href={'https://docs.turboeth.xyz/'}
@@ -33,19 +41,37 @@ export default function Home() {
               <p>Star on GitHub</p>
             </a>
           </div>
-          <LinkComponent className="link mt-4" href="https://github.com/turbo-eth/template-tally-app/issues">
-            In active development 🧰 click here to follow bounty progress.
-          </LinkComponent>
         </div>
-        <hr className="mx-auto my-16 max-w-md" />
-        <div className="container mx-auto grid max-w-screen-xl">
+        <div className="container mx-auto mt-16 grid max-w-screen-xl">
+          <div className="card mb-8 w-full ">
+            <div className="flex items-center justify-between">
+              <h3 className="text-xl font-semibold">Explore DAOS</h3>
+              <SearchInput value={searchValue} onChange={setSearchValue} />
+            </div>
+            <hr className="my-5" />
+            <div className="flex flex-wrap items-center gap-x-3 text-sm font-semibold">
+              {tallyChains.map(({ id, name, logoSrc }) => (
+                <div
+                  onClick={() => setChainId(id)}
+                  key={id}
+                  className={cn(
+                    'flex items-center min-w-fit px-2 py-3 cursor-pointer hover:bg-gray-200/40 rounded-lg',
+                    chainId === id && 'bg-gray-200/60 hover:bg-gray-200/60'
+                  )}>
+                  {logoSrc && <Image className="mr-2" alt={`${name} logo`} src={logoSrc} width={18} height={18} />}
+                  <span>{name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
           <Governors
-            className="flex w-full cursor-pointer flex-col gap-y-4"
-            classNameItem="card flex items-center gap-x-10 justify-between"
+            searchValue={searchValue}
+            className="mx-auto grid w-full cursor-pointer grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+            classNameItem="card w-full overflow-hidden max-w-xs mx-auto h-[340px] flex hover:scale-105 flex-col items-center justify-between"
             variables={{
-              chainIds: ['eip155:1'],
+              chainIds: chainId ? [chainId] : [],
               pagination: {
-                limit: 6,
+                limit: 50,
                 offset: 0,
               },
             }}
