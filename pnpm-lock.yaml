@@ -54,6 +54,8 @@ specifiers:
   class-variance-authority: ^0.4.0
   classnames: ^2.3.2
   clsx: ^1.2.1
+  dexie: ^3.2.3
+  dexie-react-hooks: ^1.1.3
   encoding: ^0.1.13
   eslint: 8.30.0
   eslint-config-next: 13.3.1
@@ -71,8 +73,10 @@ specifiers:
   eslint-plugin-testing-library: ^5.5.1
   eslint-plugin-unused-imports: ^2.0.0
   ethers: 5.7.2
+  eventsource-parser: ^1.0.0
   focus-trap-react: ^10.0.2
   framer-motion: ^8.4.3
+  fuse.js: ^6.6.2
   graphql-tag: ^2.12.6
   iron-session: ^6.3.1
   jotai: ^1.13.0
@@ -87,6 +91,7 @@ specifiers:
   prettier-plugin-tailwindcss: ^0.2.0
   query-string: ^8.1.0
   react: ^18.2.0
+  react-copy-to-clipboard: ^5.1.0
   react-dom: ^18.2.0
   react-hook-form: ^7.43.9
   react-icons: ^4.7.1
@@ -149,10 +154,14 @@ dependencies:
   class-variance-authority: 0.4.0_typescript@4.9.4
   classnames: 2.3.2
   clsx: 1.2.1
+  dexie: 3.2.3
+  dexie-react-hooks: 1.1.3_5qhjl3gdc6ctyboiwfoninc5ri
   encoding: 0.1.13
   ethers: 5.7.2
+  eventsource-parser: 1.0.0
   focus-trap-react: 10.1.1_v2m5e27vhdewzwhryxwfaorcca
   framer-motion: 8.5.5_biqbaboplfbrettd7655fr4n2y
+  fuse.js: 6.6.2
   graphql-tag: 2.12.6_graphql@16.6.0
   iron-session: 6.3.1_next@13.3.1
   jotai: 1.13.1_5wvcx74lvxq2lfpc5x4ihgp2jm
@@ -163,6 +172,7 @@ dependencies:
   pino-pretty: 9.4.0
   query-string: 8.1.0
   react: 18.2.0
+  react-copy-to-clipboard: 5.1.0_react@18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-hook-form: 7.43.9_react@18.2.0
   react-icons: 4.8.0_react@18.2.0
@@ -8063,6 +8073,23 @@ packages:
       execa: 5.1.1
     dev: false
 
+  /dexie-react-hooks/1.1.3_5qhjl3gdc6ctyboiwfoninc5ri:
+    resolution: {integrity: sha512-bXXE1gfYtfuVYTNiOlyam+YVaO8KaqacgRuxFuP37YtpS6o/jxT6KOl5h+hhqY36s0UavlHWbL+HWJFMcQumIg==}
+    peerDependencies:
+      '@types/react': '>=16'
+      dexie: '>=3.1.0-alpha.1 <5.0.0'
+      react: '>=16'
+    dependencies:
+      '@types/react': 18.0.26
+      dexie: 3.2.3
+      react: 18.2.0
+    dev: false
+
+  /dexie/3.2.3:
+    resolution: {integrity: sha512-iHayBd4UYryDCVUNa3PMsJMEnd8yjyh5p7a+RFeC8i8n476BC9wMhVvqiImq5zJZJf5Tuer+s4SSj+AA3x+ZbQ==}
+    engines: {node: '>=6.0'}
+    dev: false
+
   /didyoumean/1.2.2:
     resolution: {integrity: sha512-gxtyfqMg7GKyhQmb056K7M3xszy/myH8w+B4RT+QXBQsvAOdc3XymqDDPHx1BgPgsdAA5SIifona89YtRATDzw==}
 
@@ -9183,6 +9210,11 @@ packages:
     engines: {node: '>=0.8.x'}
     dev: false
 
+  /eventsource-parser/1.0.0:
+    resolution: {integrity: sha512-9jgfSCa3dmEme2ES3mPByGXfgZ87VbP97tng1G2nWwWx6bV2nYxm2AWCrbQjXToSe+yYlqaZNtxffR9IeQr95g==}
+    engines: {node: '>=14.18'}
+    dev: false
+
   /execa/1.0.0:
     resolution: {integrity: sha512-adbxcyWV46qiHyvSp50TKt05tB4tK3HcmF7/nxfAdhnox83seTDbwnaqKO4sXRy7roHAIFqJP/Rw/AuEbX61LA==}
     engines: {node: '>=6'}
@@ -9620,6 +9652,11 @@ packages:
   /functions-have-names/1.2.3:
     resolution: {integrity: sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==}
     dev: true
+
+  /fuse.js/6.6.2:
+    resolution: {integrity: sha512-cJaJkxCCxC8qIIcPBF9yGxY0W/tVZS3uEISDxhYIdtk8OL93pe+6Zj7LjCqVV4dzbqcriOZ+kQ/NE4RXZHsIGA==}
+    engines: {node: '>=10'}
+    dev: false
 
   /gensync/1.0.0-beta.2:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
@@ -13111,6 +13148,16 @@ packages:
   /range-parser/1.2.1:
     resolution: {integrity: sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==}
     engines: {node: '>= 0.6'}
+    dev: false
+
+  /react-copy-to-clipboard/5.1.0_react@18.2.0:
+    resolution: {integrity: sha512-k61RsNgAayIJNoy9yDsYzDe/yAZAzEbEgcz3DZMhF686LEyukcE1hzurxe85JandPUG+yTfGVFzuEw3xt8WP/A==}
+    peerDependencies:
+      react: ^15.3.0 || 16 || 17 || 18
+    dependencies:
+      copy-to-clipboard: 3.3.3
+      prop-types: 15.8.1
+      react: 18.2.0
     dev: false
 
   /react-devtools-core/4.27.6:
