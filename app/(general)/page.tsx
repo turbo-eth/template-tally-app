@@ -46,7 +46,7 @@ export default function Home() {
           <div className="card mb-8 w-full ">
             <div className="flex items-center justify-between">
               <h3 className="text-xl font-semibold">Explore DAOS</h3>
-              <SearchInput value={searchValue} onChange={setSearchValue} />
+              <SearchInput placeholder="Search DAOs" value={searchValue} onChange={setSearchValue} />
             </div>
             <hr className="my-5" />
             <div className="flex flex-wrap items-center gap-x-3 text-sm font-semibold">
