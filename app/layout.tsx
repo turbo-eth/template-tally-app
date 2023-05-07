@@ -1,29 +1,49 @@
-'use client'
 import '@/styles/app.css'
 import '@/styles/gradient.css'
 import '@/styles/periphery.css'
 import { Raleway } from '@next/font/google'
 import { Inter as FontSans } from '@next/font/google'
 import localFont from '@next/font/local'
-import classNames from 'clsx'
+import type { Metadata } from 'next'
 
-import { NetworkStatus } from '@/components/blockchain/network-status'
-import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { Footer } from '@/components/layout/footer'
-import { Header } from '@/components/layout/header'
 import RootProvider from '@/components/providers/root-provider'
-import { Toaster } from '@/components/ui/toaster'
+import { siteConfig } from '@/config/site'
 import { cn } from '@/lib/utils'
+
+const url = process.env.NEXTAUTH_URL || 'http://localhost:3000'
+const ogUrl = new URL(`${url}/api/og`)
+
+export const metadata: Metadata = {
+  title: `${siteConfig.name} - ${siteConfig.description}`,
+  description: siteConfig.description,
+  icons: {
+    icon: '/favicon.ico',
+  },
+  openGraph: {
+    title: siteConfig.name,
+    description: siteConfig.description,
+    url: url?.toString(),
+    images: [ogUrl.toString()],
+    siteName: siteConfig.name,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [ogUrl.toString()],
+  },
+}
 
 const sfPro = localFont({
   src: '../assets/fonts/SF-Pro-Display-Medium.otf',
-  variable: '--font-sf',
+  variable: '--sfPro-font',
 })
 
 const raleway = Raleway({
   subsets: ['latin'],
   weight: ['100', '200', '400', '500', '600', '700', '800', '900'],
-  variable: '--font-raleway',
+  variable: '--raleway-font',
 })
 
 const fontSans = FontSans({
@@ -31,39 +51,12 @@ const fontSans = FontSans({
   variable: '--font-sans',
 })
 
-export default function RootLayout({ children }: any) {
-  const classes = classNames('GeneralLayout', 'bg-gradient-dark min-h-[100vh] flex flex-col pb-10 lg:pb-12')
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <>
-      <html lang="en" suppressHydrationWarning>
-        <body className={cn('min-h-screen bg-white font-sans text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50', fontSans.variable)}>
-          <style jsx global>
-            {`
-              :root {
-                --sfPro-font: ${sfPro.style.fontFamily};
-                --raleway-font: ${raleway.style.fontFamily};
-              }
-            `}
-          </style>
-          <RootProvider>
-            <>
-              <div className={classes}>
-                <Header />
-                <main className="flex-center my-32 flex flex-1 flex-col md:px-10">{children}</main>
-                <div className="fixed bottom-6 left-6">
-                  <NetworkStatus />
-                </div>
-                <div className="fixed bottom-6 right-6 flex items-center">
-                  <WalletConnect />
-                </div>
-                <Footer />
-              </div>
-              {/* TODO: Add position controls */}
-              <Toaster />
-            </>
-          </RootProvider>
-        </body>
-      </html>
-    </>
+    <html lang="en" className={`${sfPro.variable} ${raleway.variable}`} suppressHydrationWarning>
+      <body className={cn('min-h-screen bg-white font-sans text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50', fontSans.variable)}>
+        <RootProvider>{children}</RootProvider>
+      </body>
+    </html>
   )
 }
