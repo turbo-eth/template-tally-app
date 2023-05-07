@@ -1,10 +1,8 @@
 import { OpenAIStream } from '@/integrations/tally/ai/openai-stream'
 
-export const config = {
-  runtime: 'edge',
-}
+export const runtime = 'edge'
 
-const handler = async (req: Request): Promise<Response> => {
+export async function POST(req: Request) {
   const { prompt } = (await req.json()) as {
     prompt?: string
   }
@@ -27,5 +25,3 @@ const handler = async (req: Request): Promise<Response> => {
   const stream = await OpenAIStream(payload)
   return new Response(stream)
 }
-
-export default handler
